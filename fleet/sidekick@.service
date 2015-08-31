@@ -8,4 +8,4 @@ ExecStart=/bin/sh -c "while true; do etcdctl set /services/website/apache@%i '{ 
 ExecStop=/usr/bin/etcdctl rm /services/website/apache@%i
 
 [X-Fleet]
-MachineOf=apche@%i.service
+MachineOf=apache@%i.service
