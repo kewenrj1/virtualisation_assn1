@@ -6,7 +6,7 @@ Requires=docker.service
 [Service]
 TimeoutStartSec=0
 ExecStartPre=-/usr/bin/docker kill datacontainer
-ExecStartPre=-/usr/bin/docker rm datacontainer
+ExecStartPre=-/usr/bin/docker rm -rf datacontainer
 ExecStartPre=/usr/bin/docker pull kewenrj1/virtualisation_assn1_data
 ExecStart=/usr/bin/docker run --rm --name datacontainer kewenrj1/virtualisation_assn1_data -D FOREGROUND
 ExecStop=/usr/bin/docker stop datacontainer
