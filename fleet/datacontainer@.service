@@ -5,11 +5,11 @@ Requires=docker.service
 
 [Service]
 TimeoutStartSec=0
-ExecStartPre=-/usr/bin/docker kill /virtualisation_assn1/datacontainer
-ExecStartPre=-/usr/bin/docker rm -rf /virtualisation_assn1/datacontainer
+ExecStartPre=-/usr/bin/docker kill datacontainer
+ExecStartPre=-/usr/bin/docker rm -rf datacontainer
 ExecStartPre=/usr/bin/docker pull kewenrj1/virtualisation_assn1_data
-ExecStart=/usr/bin/docker run --rm --name /virtualisation_assn1/datacontainer kewenrj1/virtualisation_assn1_data -D FOREGROUND
-ExecStop=/usr/bin/docker stop /virtualisation_assn1/datacontainer
+ExecStart=/usr/bin/docker run --rm --name datacontainer kewenrj1/virtualisation_assn1_data -D FOREGROUND
+ExecStop=/usr/bin/docker stop datacontainer
 
 [X-Fleet]
 Conflicts=datacontainer@*.service
