@@ -6,9 +6,15 @@ Requires=docker.service
 [Service]
 TimeoutStartSec=0
 ExecStartPre=-/usr/bin/docker kill datacontainer
+<<<<<<< HEAD
 ExecStartPre=-/usr/bin/docker rm -rf datacontainer
 ExecStartPre=/usr/bin/docker pull kewenrj1/virtualisation_assn1_data
 ExecStart=/usr/bin/docker run --rm --name datacontainer kewenrj1/virtualisation_assn1_data -D FOREGROUND
+=======
+ExecStartPre=-/usr/bin/docker rm datacontainer
+ExecStartPre=/usr/bin/docker pull kewenrj1/virtualisation_assn1
+ExecStart=/usr/bin/docker run --rm --name datacontainer kewenrj1/virtualisation_assn1 -D FOREGROUND
+>>>>>>> parent of 8f74d4b... amended docker file location name
 ExecStop=/usr/bin/docker stop datacontainer
 
 [X-Fleet]
