@@ -2,11 +2,11 @@
 Description=Data Container
 
 # Requirements
-Requires=etcd.service
+# Requires=etcd.service
 Requires=docker.service
 
 # Dependency ordering
-After=etcd.service
+# After=etcd.service
 After=docker.service
 
 [Service]
@@ -15,15 +15,19 @@ TimeoutStartSec=0
 
 # Pre-start and Start
 ## Directives with "=-" are allowed to fail without consequence
-ExecStartPre=-/usr/bin/docker kill datacontainer
-ExecStartPre=-/usr/bin/docker rm -rf datacontainer
+ExecStartPre=-/usr/bin/docker kill assn1
+ExecStartPre=-/usr/bin/docker kill data
+ExecStartPre=-/usr/bin/docker rm -rf data
 ExecStartPre=/usr/bin/docker pull kewenrj1/virtualisation_assn1_data
-ExecStart=/usr/bin/docker run --rm --name datacontainer kewenrj1/virtualisation_assn1 -D FOREGROUND
+ExecStartPre=/usr/bin/docker pull kewenrj1/virtualisation_assn1_webserver
+ExecStart=/usr/bin/docker run --name data kewenrj1/virtualisation_assn1_data
+ExecStart=/usr/bin/docker run -p 80:80 --name assn1 --volumes-from data kewenrj1/virtualisation_assn1_webserver
 
 # Stop
-ExecStop=/usr/bin/docker stop datacontainer
+ExecStop=/usr/bin/docker stop data
+ExecStop=/usr/bin/docker stop assn1
 
 [X-Fleet]
 # Don't schedule on the same machine as other instances
-X-Conflicts=datacontainer@*.service
+Conflicts=datacontainer@*.service
 
