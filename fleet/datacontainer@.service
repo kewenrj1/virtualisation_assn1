@@ -2,11 +2,9 @@
 Description=Data Container
 
 # Requirements
-# Requires=etcd.service
 Requires=docker.service
 
 # Dependency ordering
-# After=etcd.service
 After=docker.service
 
 [Service]
