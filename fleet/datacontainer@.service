@@ -16,6 +16,7 @@ TimeoutStartSec=0
 # Pre-start and Start
 ## Directives with "=-" are allowed to fail without consequence
 ExecStartPre=-/usr/bin/docker kill assn1
+ExecStartPre=-/usr/bin/docker rm -rf assn1
 ExecStartPre=-/usr/bin/docker kill data
 ExecStartPre=-/usr/bin/docker rm -rf data
 ExecStartPre=/usr/bin/docker pull kewenrj1/virtualisation_assn1_data
