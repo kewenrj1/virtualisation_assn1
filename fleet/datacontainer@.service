@@ -20,7 +20,7 @@ ExecStartPre=-/usr/bin/docker rm -rf data
 ExecStartPre=/usr/bin/docker pull kewenrj1/virtualisation_assn1_data
 ExecStartPre=/usr/bin/docker pull kewenrj1/virtualisation_assn1_webserver
 ExecStart=/usr/bin/docker run --name data kewenrj1/virtualisation_assn1_data
-ExecStart=/usr/bin/docker run -p 80:80 --name assn1 --volumes-from data kewenrj1/virtualisation_assn1_webserver
+ExecStart=/usr/bin/docker run --volumes-from data 80:80 --name assn1  kewenrj1/virtualisation_assn1_webserver
 
 # Stop
 ExecStop=/usr/bin/docker stop data
