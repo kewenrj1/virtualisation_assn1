@@ -40,6 +40,6 @@ RUN mkdir -p $APACHE_RUN_DIR $APACHE_LOCK_DIR $APACHE_LOG_DIR
 EXPOSE 80
 
 #Run Supervisor for Apache
-CMD ["/usr/sbin/Ssupervisord"]
+CMD ["/usr/sbin/supervisord"]
 
 ## Ref: https://docs.docker.com/articles/using_supervisord/ ##
