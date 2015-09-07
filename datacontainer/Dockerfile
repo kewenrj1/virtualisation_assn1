@@ -17,4 +17,4 @@ COPY index.html /var/www/html/index.html
 VOLUME [ "/var/www/html"]
 
 #Start Container
-ENTRYPOINT ["/bin/sh", "-c", 'while true; do echo ready; sleep 60; done"]
+ENTRYPOINT ["/bin/sh", "-c", "while true; do echo ready; sleep 60; done"]
