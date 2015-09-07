@@ -8,7 +8,7 @@ LABEL Last-modified="07/09/2015"
 ENV REFRESHED_AT 2015-09-07
 
 #Create DIR
-RUN mkdir -p /var/www/html
+#RUN mkdir -p /var/www/html
 
 #Copy File
 COPY index.html /var/www/html/index.html
