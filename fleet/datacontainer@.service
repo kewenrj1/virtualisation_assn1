@@ -1,11 +1,11 @@
 [Unit]
 Description=Data Container
 
-# Requirements
-Requires=docker.service
-
 # Dependency ordering
 After=docker.service
+
+# Requirements
+Requires=docker.service
 
 [Service]
 # Let processes take awhile to start up (for first run Docker containers)
@@ -13,18 +13,13 @@ TimeoutStartSec=0
 
 # Pre-start and Start
 ## Directives with "=-" are allowed to fail without consequence
-ExecStartPre=-/usr/bin/docker kill assn1
-ExecStartPre=-/usr/bin/docker rm -rf assn1
 ExecStartPre=-/usr/bin/docker kill data
 ExecStartPre=-/usr/bin/docker rm -rf data
 ExecStartPre=/usr/bin/docker pull kewenrj1/virtualisation_assn1_data
-ExecStartPre=/usr/bin/docker pull kewenrj1/virtualisation_assn1_webserver
 ExecStart=/usr/bin/docker run --name data kewenrj1/virtualisation_assn1_data
-ExecStart=/usr/bin/docker run --volumes-from data 80:80 --name assn1  kewenrj1/virtualisation_assn1_webserver
 
 # Stop
 ExecStop=/usr/bin/docker stop data
-ExecStop=/usr/bin/docker stop assn1
 
 [X-Fleet]
 # Don't schedule on the same machine as other instances
