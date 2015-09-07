@@ -1,7 +1,7 @@
 [Unit]
 Description=Apache Web Server
-After=docker.service
-Requires=docker.service
+After=data@%i.service
+Requires=data@%i.service
 
 [Service]
 TimeoutStartSec=0
@@ -10,7 +10,7 @@ EnvironmentFile=/etc/environment
 ExecStartPre=-/usr/bin/docker kill apache1
 ExecStartPre=-/usr/bin/docker rm apache1
 ExecStartPre=/usr/bin/docker pull kewenrj1/virtualisation_assn1_webserver
-ExecStart=/usr/bin/docker run --rm --name apache1 -p 80:80 kewenrj1/virtualisation_assn1_webserver /usr/sbin/apache2ctl -D FOREGROUND
+ExecStart=/usr/bin/docker run --volumes-from data -rm --name apache1 -p 80:80 kewenrj1/virtualisation_assn1_webserver
 ExecStop=/usr/bin/docker stop apache1
 
 [X-Fleet]
