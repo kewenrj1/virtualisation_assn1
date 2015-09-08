@@ -1,5 +1,14 @@
 [Unit]
+Descrition=Load Balancer
+After=docker.service
+Requires=docker.service
 
 [Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill loadbalance
+ExecStartPre=-/usr/bin/docker rm -rf loadbalance
+ExecStartPre=/usr/bin/docker pull tclark/assn1-load-balancer
+ExecStart=/usr/bin/docker run --rm --name loadbalance -p 80:80 tclark/assn1-load-balancer
 
 [X-Fleet]
+Conflicts=webserver@*.service
