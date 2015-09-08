@@ -13,10 +13,6 @@ RUN apt-get -yqq upgrade
 #Install Apache
 RUN apt-get -yqq install apache2
 
-#Install Supervisor and add Supervisor File
-RUN apt-get -yqq install supervisor
-ADD supervisord.conf /etc/supervisor/conf.d/supervisor/conf.d/
-
 #Set Volume and Working Directory
 WORKDIR /var/www/html
 
@@ -34,7 +30,8 @@ RUN mkdir -p $APACHE_RUN_DIR $APACHE_LOCK_DIR $APACHE_LOG_DIR
 #Expose the port
 EXPOSE 80
 
-#Run Supervisor for Apache
-CMD ["/usr/bin/supervisord"]
+#Run for Apache
+ENTRYPOINT ["/usr/sbin/apache2"]
+CMD ["-D", "FOREGROUND"]
 
 ## Ref: https://docs.docker.com/articles/using_supervisord/ ##
