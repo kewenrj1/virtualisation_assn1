@@ -10,18 +10,14 @@ LABEL Last-modified="08/09/2015"
 RUN apt-get -yqq update
 RUN apt-get -yqq upgrade
 
-#Install openssh-server
-RUN apt-get -yqq install openssh-server
-
 #Install Apache
 RUN apt-get -yqq install apache2
 
 #Install Supervisor and add Supervisor File
 RUN apt-get -yqq install supervisor
-COPY supervisord.conf /etc/supervisor/conf.d/supervisor/conf.d/
+ADD supervisord.conf /etc/supervisor/conf.d/supervisor/conf.d/
 
 #Set Volume and Working Directory
-VOLUME "/var/www/html"
 WORKDIR /var/www/html
 
 #Apache Commands
