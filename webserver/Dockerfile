@@ -4,8 +4,7 @@ FROM ubuntu:14.04
 #Dockerfile Maintainer
 MAINTAINER Rickie Kewene <kewenrj1@student.op.ac.nz>
 
-LABEL Last-modified="07/09/2015"
-ENV REFRESHED_AT 2015-09-07
+LABEL Last-modified="08/09/2015"
 
 #Update and Upgrade
 RUN apt-get -yqq update
@@ -22,7 +21,7 @@ RUN apt-get -yqq install supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisor/conf.d/
 
 #Set Volume and Working Directory
-VOLUME ["/var/www/html"]
+VOLUME "/var/www/html"
 WORKDIR /var/www/html
 
 #Apache Commands
