@@ -14,4 +14,6 @@ ExecStart=/usr/bin/docker run --volumes-from data -rm --name apache1 -p 80:80 ke
 ExecStop=/usr/bin/docker stop apache1
 
 [X-Fleet]
-X-Conflicts=apache@*.service
+X-Conflicts=apache1@*.service
+
+MachineOf=data@%i.service
