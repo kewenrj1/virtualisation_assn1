@@ -11,7 +11,9 @@ TimeoutStartSec=0
 
 ExecStartPre=-/usr/bin/docker kill data
 ExecStartPre=-/usr/bin/docker rm -rf data
+
 ExecStartPre=/usr/bin/docker pull kewenrj1/virtualisation_assn1_data
+
 ExecStart=/usr/bin/docker run --rm --name data kewenrj1/virtualisation_assn1_data
 
 ExecStop=/usr/bin/docker stop data
