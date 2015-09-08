@@ -1,11 +1,11 @@
 [Unit]
 Description=Apache Check
-BindsTo=apache@%i.service
-After=apache@%i.service
+BindsTo=apache1@%i.service
+After=apache1@%i.service
 
 [Service]
-ExecStart=/bin/sh -c "while true; do etcdctl set /services/website/apache@%i '{ \"host"\": \"%H\", \"port\": 80}' --ttl 60; sleep 45; done"
-ExecStop=/usr/bin/etcdctl rm /services/website/apache@%i
+ExecStart=/bin/sh -c "while true; do etcdctl set /services/website/apache1@%i '{ \"host"\": \"%H\", \"port\": 80}' --ttl 60; sleep 45; done"
+ExecStop=/usr/bin/etcdctl rm /services/website/apache1@%i
 
 [X-Fleet]
-MachineOf=apache@%i.service
+MachineOf=apache1@%i.service
